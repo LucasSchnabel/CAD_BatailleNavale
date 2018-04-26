@@ -2,9 +2,12 @@ package Model;
 
 public class Croiseur extends AbstractThreeCaseShip{
 
-	public Croiseur(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	public Croiseur(Position a, Position b) {
+		super(a, b);
 	}
 
+	@Override
+	public String toString() {
+		return "Croiseur :"+super.toString();
+	}
 }

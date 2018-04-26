@@ -1,10 +1,15 @@
 package Model;
 
 public class Drakkar extends AbstractTwoCaseShip{
+	
+	public Drakkar( Position a, Position b) {
+		super( a, b);
+		this.setPv(getPv()-1);
+	}
 
-	public Drakkar(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "Drakkar :"+super.toString();
 	}
 
 }

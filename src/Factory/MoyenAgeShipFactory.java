@@ -3,28 +3,35 @@ package Factory;
 import Model.AbstractFourCaseShip;
 import Model.AbstractThreeCaseShip;
 import Model.AbstractTwoCaseShip;
+import Model.Caravelle;
+import Model.Drakkar;
+import Model.Galere;
+import Model.Position;
 
 public class MoyenAgeShipFactory extends AbstractShipFactory{
 
-	@Override
 	public AbstractTwoCaseShip createTwoCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Drakkar(null, null);
 	}
 
-	@Override
 	public AbstractThreeCaseShip createThreeCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Caravelle(null, null);
 	}
 
-	@Override
 	public AbstractFourCaseShip createFourCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Galere(null, null);
+	}
+
+	public AbstractTwoCaseShip createTwoCaseShip(Position a, Position b) {
+		return new Drakkar(a, b);
+	}
+
+	public AbstractThreeCaseShip createThreeCaseShip(Position a, Position b) {
+		return new Caravelle(a, b);
+	}
+
+	public AbstractFourCaseShip createFourCaseShip(Position a, Position b) {
+		return new Galere(a, b);
 	}
 
 }

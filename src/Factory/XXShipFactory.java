@@ -3,28 +3,35 @@ package Factory;
 import Model.AbstractFourCaseShip;
 import Model.AbstractThreeCaseShip;
 import Model.AbstractTwoCaseShip;
+import Model.Croiseur;
+import Model.Cuirasse;
+import Model.Destroyeur;
+import Model.Position;
 
 public class XXShipFactory extends AbstractShipFactory{
 
-	@Override
 	public AbstractTwoCaseShip createTwoCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Destroyeur(null, null);
 	}
 
-	@Override
 	public AbstractThreeCaseShip createThreeCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Croiseur(null, null);
 	}
 
-	@Override
 	public AbstractFourCaseShip createFourCaseShip() {
-		return null;
-		// TODO Auto-generated method stub
-		
+		return new Cuirasse(null, null);
+	}
+
+	public AbstractTwoCaseShip createTwoCaseShip(Position a, Position b) {
+		return new Destroyeur(a, b);
+	}
+
+	public AbstractThreeCaseShip createThreeCaseShip(Position a, Position b) {
+		return new Croiseur(a, b);
+	}
+
+	public AbstractFourCaseShip createFourCaseShip(Position a, Position b) {
+		return new Cuirasse(a, b);
 	}
 
 }

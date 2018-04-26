@@ -2,9 +2,13 @@ package Model;
 
 public class Galere extends AbstractFourCaseShip{
 
-	public Galere(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	public Galere( Position a, Position b) {
+		super( a, b);
+		this.setPv(getPv()+1);
 	}
 
+	@Override
+	public String toString() {
+		return "Galere :"+super.toString();
+	}
 }

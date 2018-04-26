@@ -7,6 +7,10 @@ public abstract class AbstractShip {
 	 */
 	private int pv;
 	/**
+	 * point de vie du bateau au moment de sa creation 
+	 */
+	private static int pvDefaut = 3;
+	/**
 	 * est ce que le bateau est coule (pv = 0)
 	 */
 	private boolean coule;
@@ -33,8 +37,8 @@ public abstract class AbstractShip {
 	 * @param b
 	 * 		position de l'arriere du bateau
 	 */
-	public AbstractShip(int p,Position a,Position b){
-		this.pv = p;
+	public AbstractShip(Position a,Position b){
+		this.pv = pvDefaut;
 		this.coule = false;
 		this.proue = a;
 		this.poupe = b;
@@ -65,9 +69,53 @@ public abstract class AbstractShip {
 	 */
 	public boolean toucher(Position p){
 		boolean res = false;
-		
-		
-		
+		if(this.proue.getX()==this.poupe.getX()){//si le bateau est verticale
+			if(p.getX()==this.proue.getX()){//si le tir est sur la meme colonne
+				if((p.getY()>=this.proue.getY() && p.getY()<=this.poupe.getY()) || (p.getY()<=this.proue.getY() && p.getY()>=this.poupe.getY())){
+					res = true;
+				}
+			}
+		}else if(this.proue.getY()==this.poupe.getY()){//si le bateau est horizontale
+			if(p.getY()==this.proue.getY()){//si le tir est sur la meme ligne
+				if((p.getX()>=this.proue.getX() && p.getX()<=this.poupe.getX()) || (p.getX()<=this.proue.getX() && p.getX()>=this.poupe.getX())){
+					res = true;
+				}
+			}
+		}
+		return res;
+	}
+	
+	/**
+	 * renvoie si le bateau positionner en a,b est en colision avec le bateau en c,d
+	 * @param a
+	 * @param b
+	 * @param c
+	 * @param d
+	 * @return
+	 * 		si il y a colision
+	 */
+	public boolean colision(Position a,Position b){
+		boolean res = false;
+		int dx = 0;int dy = 0;int taille = 0;
+		if(a.getX()==b.getX()){//si le bateau est verticale
+			dy = 1;taille = Math.abs(a.getY()-b.getY());
+		}else if(a.getY()==b.getY()){//si le bateau est horizontale
+			dx = 1;taille = Math.abs(a.getX()-b.getX());
+		}
+		Position tmp;
+		if(a.getX()<=b.getX() && a.getY()<=b.getY()){
+			tmp = new Position(a);
+		}else{
+			tmp = new Position(b);
+		}
+		for(int i = 0;i<taille;i++){
+			if(this.toucher(tmp)){
+				res = true;
+				break;
+			}
+			tmp.setX(tmp.getX()+dx);
+			tmp.setY(tmp.getY()+dy);
+		}
 		return res;
 	}
 
@@ -114,6 +162,12 @@ public abstract class AbstractShip {
 
 	public void setNbMunitions(int nbMunitions) {
 		this.nbMunitions = nbMunitions;
+	}
+
+	@Override
+	public String toString() {
+		return "AbstractShip [pv=" + pv + ", coule=" + coule + ", proue=" + proue + ", poupe=" + poupe
+				+ ", nbMunitions=" + nbMunitions + "]";
 	}
 	
 	

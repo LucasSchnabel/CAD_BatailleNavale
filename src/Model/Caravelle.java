@@ -2,9 +2,12 @@ package Model;
 
 public class Caravelle extends AbstractThreeCaseShip{
 
-	public Caravelle(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	public Caravelle(Position a, Position b) {
+		super(a, b);
 	}
 
+	@Override
+	public String toString() {
+		return "Caravelle :"+super.toString();
+	}
 }

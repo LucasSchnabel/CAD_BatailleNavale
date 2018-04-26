@@ -2,9 +2,14 @@ package Model;
 
 public class Destroyeur extends AbstractTwoCaseShip{
 
-	public Destroyeur(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	public Destroyeur(Position a, Position b) {
+		super( a, b);
+		this.setPv(getPv()-1);
 	}
 
+	@Override
+	public String toString() {
+		return "Destroyeur :"+super.toString();
+	}
+	
 }

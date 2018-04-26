@@ -6,9 +6,13 @@ public class Position {
 	private int y;
 	
 	public Position(int x, int y) {
-		super();
 		this.x = x;
 		this.y = y;
+	}
+	
+	public Position(Position a){
+		this.x = a.getX();
+		this.y = a.getY();
 	}
 
 	public int getX() {

@@ -2,9 +2,13 @@ package Model;
 
 public class Cuirasse extends AbstractFourCaseShip{
 
-	public Cuirasse(int p, Position a, Position b) {
-		super(p, a, b);
-		// TODO Auto-generated constructor stub
+	public Cuirasse(Position a, Position b) {
+		super(a, b);
+		this.setPv(getPv()+1);
 	}
 
+	@Override
+	public String toString() {
+		return "Cuirasse :"+super.toString();
+	}
 }
