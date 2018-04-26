@@ -1,9 +1,14 @@
 package Main;
 
+import com.sun.media.jfxmedia.events.NewFrameEvent;
+
 import Factory.AbstractShipFactory;
 import Factory.MoyenAgeShipFactory;
+import Factory.XXShipFactory;
 import Model.AbstractShip;
 import Model.Grille;
+import Vue.VueAdverse;
+import Vue.VueJoueur;
 
 public class Bataille {
 	
@@ -14,14 +19,47 @@ public class Bataille {
 	public Bataille(AbstractShipFactory epoque){
 		this.grilleJoueur = new Grille(epoque);
 		this.grilleAdverse = new Grille(epoque);
+		VueJoueur vJ = new VueJoueur(grilleJoueur);
+		VueAdverse vA = new VueAdverse(grilleAdverse);
+		
 	}
 	
 	public static void main(String[]args){
-		MoyenAgeShipFactory mf = new MoyenAgeShipFactory();
-		AbstractShip drakkar = mf.createTwoCaseShip();
-		System.out.println(drakkar);
+		AbstractShipFactory moyenAge = new MoyenAgeShipFactory();
+		Bataille b = new Bataille(moyenAge);
 	}
 	
 	
+	public void setEpoque(String s){
+		AbstractShipFactory newEpoque;
+		switch(s){
+		case "MoyenAge":
+			newEpoque = new MoyenAgeShipFactory();
+			break;
+		case "XXeme":
+			newEpoque = new XXShipFactory();
+			break;
+		default:
+				newEpoque = new XXShipFactory();
+		}
+		this.grilleJoueur.setEpoque(newEpoque);
+		this.grilleAdverse.setEpoque(newEpoque);		
+	}
+	
+	public Grille getGrilleJoueur() {
+		return grilleJoueur;
+	}
+
+	public void setGrilleJoueur(Grille grilleJoueur) {
+		this.grilleJoueur = grilleJoueur;
+	}
+
+	public Grille getGrilleAdverse() {
+		return grilleAdverse;
+	}
+
+	public void setGrilleAdverse(Grille grilleAdverse) {
+		this.grilleAdverse = grilleAdverse;
+	}
 
 }

@@ -28,6 +28,22 @@ public class Grille extends Observable {
 	public void addBateau(AbstractShip a) {
 		this.bateaux.add(a);
 	}
+	
+	/**
+	 * supprime le bateau numero i de la liste
+	 * @param i
+	 */
+	public void suppBateau(int i){
+		this.bateaux.remove(i);
+	}
+	
+	/**
+	 * supprime de la liste des bateaux le bateau mis en parametre
+	 * @param b
+	 */
+	public void suppBateau(AbstractShip b){
+		this.bateaux.remove(b);
+	}
 
 	/**
 	 * verifie si la construction d'un bateau a partir des positions a et b est possible puis la rajoute dans la liste
@@ -99,6 +115,10 @@ public class Grille extends Observable {
 
 	public void setEpoque(AbstractShipFactory epoque) {
 		this.epoque = epoque;
+		for(AbstractShip bateau:this.bateaux){
+			this.suppBateau(bateau);
+			this.constructionBateau(bateau.getProue(), bateau.getPoupe());
+		}
 	}
 
 }
