@@ -4,7 +4,7 @@ public class AbstractFourCaseShip extends AbstractShip {
 
 	public AbstractFourCaseShip(Position a, Position b) {
 		super( a, b);
-		// TODO Auto-generated constructor stub
+		this.setTaille(4);
 	}
 
 	@Override

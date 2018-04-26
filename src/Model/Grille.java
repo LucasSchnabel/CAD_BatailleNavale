@@ -14,6 +14,8 @@ public class Grille extends Observable {
 
 	private AbstractShipFactory epoque;
 
+	private static int NB_MAX_BATEAUX = 5;
+	
 	public Grille(AbstractShipFactory factory) {
 		this.bateaux = new ArrayList<AbstractShip>();
 		this.listeTirs = new ArrayList<Position>();
@@ -55,35 +57,37 @@ public class Grille extends Observable {
 	public boolean constructionBateau(Position a,Position b){
 		boolean res = false;
 		int taille = 0;
-		if(a.getX()==b.getX()){//si le bateau est verticale
-			taille = Math.abs(a.getY()-b.getY());
-		}else if(a.getY()==b.getY()){//si le bateau est horizontale
-			taille = Math.abs(a.getX()-b.getX());
-		}//sinon le bateau est en diagonale et on ne le creer pas
-		
-		if(taille>1 && taille<5){
-			AbstractShip bateau = null;
-			boolean colision = false;
-			//on verifie qu'il n'y a pas de colision avec un autre bateau deja place
-			for(AbstractShip ship:this.bateaux){
-				if(ship.colision(a, b)){
-					colision = true;
-					break;
+		if(this.bateaux.size()<NB_MAX_BATEAUX){
+			if(a.getX()==b.getX()){//si le bateau est verticale
+				taille = Math.abs(a.getY()-b.getY());
+			}else if(a.getY()==b.getY()){//si le bateau est horizontale
+				taille = Math.abs(a.getX()-b.getX());
+			}//sinon le bateau est en diagonale et on ne le creer pas
+			
+			if(taille>1 && taille<5){
+				AbstractShip bateau = null;
+				boolean colision = false;
+				//on verifie qu'il n'y a pas de colision avec un autre bateau deja place
+				for(AbstractShip ship:this.bateaux){
+					if(ship.colision(a, b)){
+						colision = true;
+						break;
+					}
 				}
-			}
-			if(!colision){
-				switch(taille){
-				case 2:
-					bateau = epoque.createTwoCaseShip(a, b);
-					break;
-				case 3:
-					bateau = epoque.createThreeCaseShip(a, b);
-					break;
-				case 4:
-					bateau = epoque.createFourCaseShip(a, b);
-					break;
+				if(!colision){
+					switch(taille){
+					case 2:
+						bateau = epoque.createTwoCaseShip(a, b);
+						break;
+					case 3:
+						bateau = epoque.createThreeCaseShip(a, b);
+						break;
+					case 4:
+						bateau = epoque.createFourCaseShip(a, b);
+						break;
+					}
+					if(bateau!=null)this.addBateau(bateau);
 				}
-				if(bateau!=null)this.addBateau(bateau);
 			}
 		}
 		return res;
@@ -113,12 +117,20 @@ public class Grille extends Observable {
 		return epoque;
 	}
 
+	/**
+	 * set l'epoque de la grille et remplace tout les bateaux par leurs equivalent dans la nouvelle epoque
+	 * @param epoque
+	 */
 	public void setEpoque(AbstractShipFactory epoque) {
 		this.epoque = epoque;
 		for(AbstractShip bateau:this.bateaux){
 			this.suppBateau(bateau);
 			this.constructionBateau(bateau.getProue(), bateau.getPoupe());
 		}
+	}
+	
+	public List<AbstractShip> getBateaux(){
+		return this.bateaux;
 	}
 
 }

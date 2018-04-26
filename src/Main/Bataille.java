@@ -14,14 +14,14 @@ public class Bataille {
 	
 	private Grille grilleJoueur;
 	private Grille grilleAdverse;
-	
+	private boolean tour;
 	
 	public Bataille(AbstractShipFactory epoque){
 		this.grilleJoueur = new Grille(epoque);
 		this.grilleAdverse = new Grille(epoque);
-		VueJoueur vJ = new VueJoueur(grilleJoueur);
-		VueAdverse vA = new VueAdverse(grilleAdverse);
-		
+		VueJoueur vJ = new VueJoueur(grilleJoueur,grilleAdverse);
+		VueAdverse vA = new VueAdverse(grilleJoueur,grilleAdverse);
+		this.tour = true;
 	}
 	
 	public static void main(String[]args){

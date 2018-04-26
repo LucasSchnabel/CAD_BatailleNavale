@@ -29,6 +29,11 @@ public abstract class AbstractShip {
 	private int nbMunitions;
 	
 	/**
+	 * taille du bateau
+	 */
+	private int taille;
+	
+	/**
 	 * constructeur par defaut de tous les bateaux
 	 * @param p
 	 * 		nombre de point de vie
@@ -119,6 +124,30 @@ public abstract class AbstractShip {
 		return res;
 	}
 
+	public Position[] positionsBateau(){
+		Position[] res = new Position[this.taille];
+		//determine si le bateau est horizontale ou verticale
+		int dx = 0;int dy = 0;
+		if(proue.getX()==poupe.getX()){
+			dy = 1;
+		}else{
+			dx = 1;
+		}
+		//commence par le point du bateau le plus proche de l'origine
+		Position tmp;
+		if(proue.getX()<=poupe.getX() && proue.getY()<=poupe.getY()){
+			tmp = new Position(proue);
+		}else{
+			tmp = new Position(poupe);
+		}
+		//ajoute chaque point du bateau dans le tableau de position
+		for(int i = 0;i<taille;i++){
+			res[i] = tmp;
+			tmp = new Position(tmp.getX()+dx,tmp.getY()+dy);
+		}
+		return res;
+	}
+	
 	
 	/**
 	 * tous les getters et setters du bateaux
@@ -162,6 +191,14 @@ public abstract class AbstractShip {
 
 	public void setNbMunitions(int nbMunitions) {
 		this.nbMunitions = nbMunitions;
+	}
+
+	public int getTaille() {
+		return taille;
+	}
+
+	public void setTaille(int taille) {
+		this.taille = taille;
 	}
 
 	@Override

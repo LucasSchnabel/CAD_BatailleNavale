@@ -7,12 +7,16 @@ import Model.Grille;
 
 public class VueAdverse extends AbstractVue{
 
-	public VueAdverse(Grille g) {
-		super(g);
+	public VueAdverse(Grille j,Grille o) {
+		super(j,o);
+		this.getFrame().setJMenuBar(null);
+		this.getFrame().setTitle("Adversaire");
 	}
 
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		//affiche les tirs du joueurs 
+		
+		//(optionnel)affiche les bateaux de l'adversaire quand la partie est fini
 		
 	}
 
