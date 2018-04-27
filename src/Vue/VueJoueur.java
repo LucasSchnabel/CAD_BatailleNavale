@@ -20,7 +20,7 @@ public class VueJoueur extends AbstractVue{
 		//affiche les bateaux du joueur
 		for(AbstractShip bateau:this.modelJoueur.getBateaux()){
 			for(Position p:bateau.positionsBateau()){
-				this.cases[p.getX() + p.getY()*largeur].setBackground(Color.BLUE);
+				this.cases[p.getX() + p.getY()*Grille.LARGEUR].setBackground(Color.BLUE);
 			}
 		}
 		//affiche les tirs de l'adversaire

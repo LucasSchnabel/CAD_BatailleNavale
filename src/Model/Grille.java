@@ -10,15 +10,22 @@ public class Grille extends Observable {
 
 	private List<Position> listeTirs;
 
+	private List<Boolean> listeResultatTir;
+	
 	private List<AbstractShip> bateaux;
 
 	private AbstractShipFactory epoque;
+	
+	public final static int HAUTEUR = 9;
+	
+	public final static int LARGEUR = 9;
 
 	private static int NB_MAX_BATEAUX = 5;
 	
 	public Grille(AbstractShipFactory factory) {
 		this.bateaux = new ArrayList<AbstractShip>();
 		this.listeTirs = new ArrayList<Position>();
+		this.listeResultatTir = new ArrayList<Boolean>();
 		this.epoque = factory;
 	}
 
@@ -29,6 +36,8 @@ public class Grille extends Observable {
 	 */
 	public void addBateau(AbstractShip a) {
 		this.bateaux.add(a);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	/**
@@ -37,6 +46,8 @@ public class Grille extends Observable {
 	 */
 	public void suppBateau(int i){
 		this.bateaux.remove(i);
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	/**
@@ -45,6 +56,8 @@ public class Grille extends Observable {
 	 */
 	public void suppBateau(AbstractShip b){
 		this.bateaux.remove(b);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -86,7 +99,9 @@ public class Grille extends Observable {
 						bateau = epoque.createFourCaseShip(a, b);
 						break;
 					}
-					if(bateau!=null)this.addBateau(bateau);
+					if(bateau!=null){
+						this.addBateau(bateau);
+					}
 				}
 			}
 		}
@@ -110,6 +125,9 @@ public class Grille extends Observable {
 					res = true;
 			}
 		}
+		this.listeResultatTir.add(res);
+		this.setChanged();
+		this.notifyObservers();
 		return res;
 	}
 

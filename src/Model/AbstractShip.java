@@ -47,7 +47,7 @@ public abstract class AbstractShip {
 		this.coule = false;
 		this.proue = a;
 		this.poupe = b;
-		this.nbMunitions = 1;
+		this.nbMunitions = Grille.HAUTEUR*Grille.LARGEUR;
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public abstract class AbstractShip {
 	 */
 	public boolean tirer(Position p){
 		boolean res = false;
-		if(this.nbMunitions>0){
+		if(this.nbMunitions>0 && (p.getX()>0 && p.getY()>0 && p.getX()<Grille.LARGEUR && p.getY()<Grille.HAUTEUR)){
 			res = true;
 		}
 		return res;
@@ -203,7 +203,7 @@ public abstract class AbstractShip {
 
 	@Override
 	public String toString() {
-		return "AbstractShip [pv=" + pv + ", coule=" + coule + ", proue=" + proue + ", poupe=" + poupe
+		return "AbstractShip [pv=" + pv + ", coule=" + coule + ", proue=" + proue.getX()+","+proue.getY() + ", poupe=" + poupe.getX()+","+poupe.getY()
 				+ ", nbMunitions=" + nbMunitions + "]";
 	}
 	

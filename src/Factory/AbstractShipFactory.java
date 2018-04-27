@@ -1,11 +1,15 @@
 package Factory;
 
+import java.awt.Color;
+
 import Model.AbstractFourCaseShip;
 import Model.AbstractThreeCaseShip;
 import Model.AbstractTwoCaseShip;
 import Model.Position;
 
 public abstract class AbstractShipFactory {
+	
+	protected Color couleur;
 
 	public abstract AbstractTwoCaseShip createTwoCaseShip();
 	

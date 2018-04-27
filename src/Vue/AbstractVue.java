@@ -15,8 +15,6 @@ import Model.Grille;
 
 public abstract class AbstractVue implements Observer{
 
-	protected static int hauteur = 9;
-	protected static int largeur = 9;
 	protected Grille modelJoueur;
 	protected Grille modelAdversaire;
 	private JFrame frame = new JFrame("Bataille navale");
@@ -45,12 +43,12 @@ public abstract class AbstractVue implements Observer{
 
 		//remplit la grille de bouton
         grille = (JPanel) frame.getContentPane();
-		grille.setLayout(new GridLayout(hauteur,largeur));
-		cases = new JButton[hauteur*largeur];
-		for(int i = 0;i<hauteur;i++){
-			for(int j = 0;j<largeur;j++){
+		grille.setLayout(new GridLayout(Grille.HAUTEUR,Grille.LARGEUR));
+		cases = new JButton[Grille.HAUTEUR*Grille.LARGEUR];
+		for(int i = 0;i<Grille.HAUTEUR;i++){
+			for(int j = 0;j<Grille.LARGEUR;j++){
 				JButton button = new JButton(i+","+j);
-				cases[i*largeur + j] = button;
+				cases[i*Grille.LARGEUR + j] = button;
 				grille.add(button);
 			}
 		}

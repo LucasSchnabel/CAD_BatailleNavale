@@ -1,5 +1,7 @@
 package Factory;
 
+import java.awt.Color;
+
 import Model.AbstractFourCaseShip;
 import Model.AbstractThreeCaseShip;
 import Model.AbstractTwoCaseShip;
@@ -10,6 +12,10 @@ import Model.Position;
 
 public class MoyenAgeShipFactory extends AbstractShipFactory{
 
+	public MoyenAgeShipFactory(){
+		this.couleur = Color.GREEN;
+	}
+	
 	public AbstractTwoCaseShip createTwoCaseShip() {
 		return new Drakkar(null, null);
 	}

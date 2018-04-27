@@ -1,5 +1,7 @@
 package Factory;
 
+import java.awt.Color;
+
 import Model.AbstractFourCaseShip;
 import Model.AbstractThreeCaseShip;
 import Model.AbstractTwoCaseShip;
@@ -10,6 +12,10 @@ import Model.Position;
 
 public class XXShipFactory extends AbstractShipFactory{
 
+	public XXShipFactory(){
+		this.couleur = Color.BLACK;
+	}
+	
 	public AbstractTwoCaseShip createTwoCaseShip() {
 		return new Destroyeur(null, null);
 	}
