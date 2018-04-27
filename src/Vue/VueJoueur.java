@@ -24,6 +24,17 @@ public class VueJoueur extends AbstractVue{
 			}
 		}
 		//affiche les tirs de l'adversaire
+		int nbTir = this.modelAdversaire.getListeTirs().size();
+		Color tir;Position p;
+		for(int i = 0;i<nbTir;i++){
+			p = this.modelAdversaire.getPositionTir(i);
+			if(this.modelAdversaire.getResTir(i)){
+				tir = Color.green;
+			}else{
+				tir = Color.cyan;
+			}
+			this.cases[p.getX() + p.getY()*Grille.LARGEUR].setBackground(tir);
+		}
 	}
 
 	

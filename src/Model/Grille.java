@@ -151,4 +151,20 @@ public class Grille extends Observable {
 		return this.bateaux;
 	}
 
+	public List<Position> getListeTirs() {
+		return listeTirs;
+	}
+
+	public List<Boolean> getListeResultatTir() {
+		return listeResultatTir;
+	}
+	
+	public boolean getResTir(int i){
+		return this.listeResultatTir.get(i);
+	}
+	
+	public Position getPositionTir(int i){
+		return this.listeTirs.get(i);
+	}
+	
 }

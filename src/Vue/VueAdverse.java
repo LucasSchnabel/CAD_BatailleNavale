@@ -1,9 +1,11 @@
 package Vue;
 
+import java.awt.Color;
 import java.util.Observable;
 import java.util.Observer;
 
 import Model.Grille;
+import Model.Position;
 
 public class VueAdverse extends AbstractVue{
 
@@ -15,7 +17,17 @@ public class VueAdverse extends AbstractVue{
 
 	public void update(Observable o, Object arg) {
 		//affiche les tirs du joueurs 
-		
+		int nbTir = this.modelJoueur.getListeTirs().size();
+		Color tir;Position p;
+		for(int i = 0;i<nbTir;i++){
+			p = this.modelJoueur.getPositionTir(i);
+			if(this.modelJoueur.getResTir(i)){
+				tir = Color.green;
+			}else{
+				tir = Color.cyan;
+			}
+			this.cases[p.getX() + p.getY()*Grille.LARGEUR].setBackground(tir);
+		}
 		//(optionnel)affiche les bateaux de l'adversaire quand la partie est fini
 		
 	}
