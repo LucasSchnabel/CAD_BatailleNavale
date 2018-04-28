@@ -13,6 +13,7 @@ public class Bataille {
 	private Grille grilleJoueur;
 	private Grille grilleAdverse;
 	private boolean tour;
+	private int nbBateaux;
 	public static final String[] epoque = {"Moyen-Age","XXe siecle"}; 
 	
 	public Bataille(AbstractShipFactory epoque){
@@ -25,6 +26,7 @@ public class Bataille {
 		this.grilleAdverse.addObserver(vJ);
 		this.grilleAdverse.addObserver(vA);
 		this.tour = true;
+		this.nbBateaux = 0;
 	}
 	
 	public void setEpoque(String s){
@@ -43,6 +45,43 @@ public class Bataille {
 		this.grilleAdverse.setEpoque(newEpoque);		
 	}
 	
+	public boolean tirJoueur(Position p){
+		boolean res = false;
+		if(tour && nbBateaux==Grille.NB_MAX_BATEAUX){
+			res = this.grilleAdverse.touche(p);
+		}
+		return res;
+	}
+	
+	public boolean tirAdverse(){
+		boolean res = false;
+		if(!tour && nbBateaux==Grille.NB_MAX_BATEAUX){
+			while(!res){
+				Position p = Position.random();
+				res = this.grilleJoueur.touche(p);
+			}
+		}
+		return res;
+	}
+	
+	public boolean constructionBateauJoueur(Position a,Position b){
+		boolean res = false;
+		res = this.grilleJoueur.constructionBateau(a, b);
+		return res;
+	}
+	
+	public boolean constructionBateauAdverse(){
+		boolean res = false;
+		Position a,b;
+		while(!res){
+			a = Position.random();
+			b = Position.randomSide(a);
+			res = this.grilleAdverse.constructionBateau(a, b);
+		}
+		nbBateaux++;
+		return res;
+	}
+	
 	public Grille getGrilleJoueur() {
 		return grilleJoueur;
 	}
@@ -59,4 +98,8 @@ public class Bataille {
 		this.grilleAdverse = grilleAdverse;
 	}
 
+	public int getNbBateaux(){
+		return nbBateaux;
+	}
+	
 }

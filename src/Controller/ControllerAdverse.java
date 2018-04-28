@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import Model.Bataille;
+import Model.Grille;
 import Model.Position;
 
 public class ControllerAdverse implements ActionListener{
@@ -31,22 +32,27 @@ public class ControllerAdverse implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		String action = e.getActionCommand();
-		if(action == "Tirer"){
-			tirer = true;
+		if(model.getNbBateaux()<Grille.NB_MAX_BATEAUX){
+			System.out.println("Vous devez placer tout vos bateaux avant de tirer");
 		}else{
-			String[] pos = action.split(",");
-			Position p = new Position(Integer.parseInt(pos[0]),Integer.parseInt(pos[1]));
-			this.tir = p;
-		}
-		if(tirer && tir!=null){
-			if(model.getGrilleJoueur().touche(tir)){
-				System.out.println("Tir réussi");
-				tirer = false;
-				tir = null;
+			if(action == "Tirer"){
+				tirer = true;
 			}else{
-				System.out.println("Tir non effectuer");
+				String[] pos = action.split(",");
+				Position p = new Position(Integer.parseInt(pos[0]),Integer.parseInt(pos[1]));
+				this.tir = p;
+			}
+			if(tirer && tir!=null){
+				if(model.tirJoueur(tir)){
+					System.out.println("Tir réussi");
+					tirer = false;
+					tir = null;
+				}else{
+					System.out.println("Tir non effectuer");
+				}
 			}
 		}
+		
 	}
 
 }

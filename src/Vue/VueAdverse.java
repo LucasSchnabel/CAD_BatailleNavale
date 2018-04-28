@@ -18,11 +18,11 @@ public class VueAdverse extends AbstractVue{
 
 	public void update(Observable o, Object arg) {
 		//affiche les tirs du joueurs 
-		int nbTir = this.model.getGrilleJoueur().getListeTirs().size();
+		int nbTir = this.model.getGrilleAdverse().getListeTirs().size();
 		Color tir;Position p;
 		for(int i = 0;i<nbTir;i++){
-			p = this.model.getGrilleJoueur().getPositionTir(i);
-			if(this.model.getGrilleJoueur().getResTir(i)){
+			p = this.model.getGrilleAdverse().getPositionTir(i);
+			if(this.model.getGrilleAdverse().getResTir(i)){
 				tir = Color.green;
 			}else{
 				tir = Color.cyan;

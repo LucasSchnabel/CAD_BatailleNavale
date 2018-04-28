@@ -44,12 +44,11 @@ public class ControllerJoueur implements ActionListener{
 			}
 		}
 		if(cases.size()==2 && placerBateau){
-			if(!model.getGrilleJoueur().constructionBateau(cases.get(0), cases.get(1))){
-				//System.out.println(cases.get(0));
-				//System.out.println(cases.get(1));
+			if(!model.constructionBateauJoueur(cases.get(0), cases.get(1))){
 				System.out.println("Les positions que vous avez donner ne peuvent pas créer de bateau");
 				cases.removeAll(cases);
 			}else{
+				model.constructionBateauAdverse();
 				placerBateau = false;
 			}
 		}

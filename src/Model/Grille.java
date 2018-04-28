@@ -20,7 +20,7 @@ public class Grille extends Observable {
 	
 	public final static int LARGEUR = 9;
 
-	private static int NB_MAX_BATEAUX = 5;
+	public final static int NB_MAX_BATEAUX = 5;
 	
 	public Grille(AbstractShipFactory factory) {
 		this.bateaux = new ArrayList<AbstractShip>();

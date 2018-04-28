@@ -22,4 +22,8 @@ public abstract class AbstractShipFactory {
 	public abstract AbstractThreeCaseShip createThreeCaseShip(Position a,Position b);
 	
 	public abstract AbstractFourCaseShip createFourCaseShip(Position a,Position b);
+
+	public Color getColor() {
+		return couleur;
+	}
 }

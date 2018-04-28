@@ -21,15 +21,15 @@ public class VueJoueur extends AbstractVue{
 		//affiche les bateaux du joueur
 		for(AbstractShip bateau:this.model.getGrilleJoueur().getBateaux()){
 			for(Position p:bateau.positionsBateau()){
-				this.cases[p.getY() + p.getX()*Grille.LARGEUR].setBackground(Color.BLUE);
+				this.cases[p.getY() + p.getX()*Grille.LARGEUR].setBackground(this.model.getGrilleJoueur().getEpoque().getColor());
 			}
 		}
 		//affiche les tirs de l'adversaire
-		int nbTir = this.model.getGrilleAdverse().getListeTirs().size();
+		int nbTir = this.model.getGrilleJoueur().getListeTirs().size();
 		Color tir;Position p;
 		for(int i = 0;i<nbTir;i++){
-			p = this.model.getGrilleAdverse().getPositionTir(i);
-			if(this.model.getGrilleAdverse().getResTir(i)){
+			p = this.model.getGrilleJoueur().getPositionTir(i);
+			if(this.model.getGrilleJoueur().getResTir(i)){
 				tir = Color.green;
 			}else{
 				tir = Color.cyan;
