@@ -90,6 +90,18 @@ public abstract class AbstractShip {
 		return res;
 	}
 	
+	public boolean toucherParUnTir(Position p){
+		if(this.toucher(p)){
+			pv--;
+			if(pv==0){
+				coule = true;
+				System.out.println("Bateau coule :"+this);
+			}
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * renvoie si le bateau positionner en a,b est en colision avec le bateau en c,d
 	 * @param a
@@ -203,7 +215,7 @@ public abstract class AbstractShip {
 
 	@Override
 	public String toString() {
-		return "AbstractShip [pv=" + pv + ", coule=" + coule + ", proue=" + proue.getX()+","+proue.getY() + ", poupe=" + poupe.getX()+","+poupe.getY()
+		return " [pv=" + pv + ", coule=" + coule + ", proue=" + proue.getX()+","+proue.getY() + ", poupe=" + poupe.getX()+","+poupe.getY()
 				+ ", nbMunitions=" + nbMunitions + "]";
 	}
 	

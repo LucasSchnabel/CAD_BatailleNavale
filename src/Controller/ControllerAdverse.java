@@ -44,9 +44,10 @@ public class ControllerAdverse implements ActionListener{
 			}
 			if(tirer && tir!=null){
 				if(model.tirJoueur(tir)){
-					System.out.println("Tir réussi");
+					System.out.println("Tir sur la position :"+tir);
 					tirer = false;
 					tir = null;
+					model.tirAdverse();
 				}else{
 					System.out.println("Tir non effectuer");
 				}

@@ -130,7 +130,7 @@ public class Grille extends Observable {
 			this.listeTirs.add(p);
 			res = true;
 			for (AbstractShip bateau : this.bateaux) {
-				if (bateau.toucher(p)){
+				if (bateau.toucherParUnTir(p)){
 					toucher = true;
 				}
 			}
