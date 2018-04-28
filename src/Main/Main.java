@@ -20,20 +20,8 @@ public class Main {
 	      null,
 	      Bataille.epoque,
 	      Bataille.epoque[1]);
-	    AbstractShipFactory f;
-	    
-	    switch(epoque){
-	    case "Moyen-Age":
-	    	f = new MoyenAgeShipFactory();
-	    	break;
-	    case "XXe siecle":
-	    	f = new XXShipFactory();
-	    	break;
-	    default:
-	    	f = new XXShipFactory();
-	    }
-	    Bataille b = new Bataille(f);
-	    
+	    Bataille b = new Bataille(null);
+	    b.setEpoque(epoque);
 	}
 
 }

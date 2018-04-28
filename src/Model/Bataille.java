@@ -18,8 +18,8 @@ public class Bataille {
 	public Bataille(AbstractShipFactory epoque){
 		this.grilleJoueur = new Grille(epoque);
 		this.grilleAdverse = new Grille(epoque);
-		VueJoueur vJ = new VueJoueur(grilleJoueur,grilleAdverse);
-		VueAdverse vA = new VueAdverse(grilleJoueur,grilleAdverse);
+		VueJoueur vJ = new VueJoueur(this);
+		VueAdverse vA = new VueAdverse(this);
 		this.grilleJoueur.addObserver(vJ);
 		this.grilleJoueur.addObserver(vA);
 		this.grilleAdverse.addObserver(vJ);
@@ -30,10 +30,10 @@ public class Bataille {
 	public void setEpoque(String s){
 		AbstractShipFactory newEpoque;
 		switch(s){
-		case "MoyenAge":
+		case "Moyen-Age":
 			newEpoque = new MoyenAgeShipFactory();
 			break;
-		case "XXeme":
+		case "XXe siecle":
 			newEpoque = new XXShipFactory();
 			break;
 		default:

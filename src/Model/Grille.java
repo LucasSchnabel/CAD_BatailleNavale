@@ -70,12 +70,16 @@ public class Grille extends Observable {
 	public boolean constructionBateau(Position a,Position b){
 		boolean res = false;
 		int taille = 0;
+		System.out.println(a);
+		System.out.println(b);
 		if(this.bateaux.size()<NB_MAX_BATEAUX){
 			if(a.getX()==b.getX()){//si le bateau est verticale
-				taille = Math.abs(a.getY()-b.getY());
+				taille = Math.abs(a.getY()-b.getY())+1;
 			}else if(a.getY()==b.getY()){//si le bateau est horizontale
-				taille = Math.abs(a.getX()-b.getX());
-			}//sinon le bateau est en diagonale et on ne le creer pas
+				taille = Math.abs(a.getX()-b.getX())+1;
+			}else{//sinon le bateau est en diagonale et on ne le creer pas
+				System.out.println("Vous ne pouvez pas créer de bateau en diagonale");
+			}
 			
 			if(taille>1 && taille<5){
 				AbstractShip bateau = null;
@@ -84,6 +88,7 @@ public class Grille extends Observable {
 				for(AbstractShip ship:this.bateaux){
 					if(ship.colision(a, b)){
 						colision = true;
+						System.out.println("Colision avec un autre bateau");
 						break;
 					}
 				}
@@ -101,33 +106,38 @@ public class Grille extends Observable {
 					}
 					if(bateau!=null){
 						this.addBateau(bateau);
+						res = true;
+						System.out.println(bateau);
 					}
 				}
 			}
+		}else{
+			System.out.println("Vous avez atteint le nombre max de bateau");
 		}
 		return res;
 	}
 
 	/**
-	 * ajoute le tir effectuer a la liste de tir et renvoie si le tir a touche
-	 * un bateau
-	 * 
+	 * ajoute le tir effectuer a la liste de tir et renvoie si le tir est effectue
 	 * @param p
 	 *            position du tir
-	 * @return si le tir a touche un bateau
+	 * @return si le tir est effectue
 	 */
 	public boolean touche(Position p) {
 		boolean res = false;
+		boolean toucher = false;
 		if (!listeTirs.contains(p)) {
 			this.listeTirs.add(p);
+			res = true;
 			for (AbstractShip bateau : this.bateaux) {
-				if (bateau.toucher(p))
-					res = true;
+				if (bateau.toucher(p)){
+					toucher = true;
+				}
 			}
+			this.listeResultatTir.add(toucher);
+			this.setChanged();
+			this.notifyObservers();
 		}
-		this.listeResultatTir.add(res);
-		this.setChanged();
-		this.notifyObservers();
 		return res;
 	}
 
