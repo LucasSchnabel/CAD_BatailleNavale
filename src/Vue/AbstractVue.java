@@ -46,8 +46,8 @@ public abstract class AbstractVue implements Observer{
 	public void buildFrame(){
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		ControllerAdverse ca = new ControllerAdverse(model);
-		ControllerJoueur cj = new ControllerJoueur(model);
+		ControllerAdverse ca = ControllerAdverse.getInstance(model);
+		ControllerJoueur cj = ControllerJoueur.getInstance(model);
 		
 		//remplit la grille de bouton
         grille = (JPanel) frame.getContentPane();

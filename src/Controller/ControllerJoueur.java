@@ -16,7 +16,16 @@ public class ControllerJoueur implements ActionListener{
 	
 	private boolean placerBateau;
 	
-	public ControllerJoueur(Bataille b){
+	private static ControllerJoueur instance = null;
+	
+	public static ControllerJoueur getInstance(Bataille b){
+		if(instance == null){
+			instance = new ControllerJoueur(b);
+		}
+		return instance;
+	}
+	
+	private ControllerJoueur(Bataille b){
 		this.model = b;
 		this.placerBateau = false;
 		this.cases = new ArrayList<Position>();

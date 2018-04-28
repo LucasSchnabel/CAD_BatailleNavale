@@ -15,7 +15,16 @@ public class ControllerAdverse implements ActionListener{
 	
 	private boolean tirer;
 	
-	public ControllerAdverse(Bataille b){
+	private static ControllerAdverse instance = null;
+	
+	public static ControllerAdverse getInstance(Bataille b){
+		if(instance == null){
+			instance = new ControllerAdverse(b);
+		}
+		return instance;
+	}
+	
+	private ControllerAdverse(Bataille b){
 		this.model = b;
 		this.tirer = false;
 	}
