@@ -97,7 +97,7 @@ public abstract class AbstractShip {
 	}
 	
 	public boolean toucherParUnTir(Position p){
-		if(this.toucher(p)){
+		if(this.toucher(p) && !coule){
 			if(pv > 0)	pv--;
 			if(pv==0){
 				coule = true;
