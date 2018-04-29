@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.Observable;
+
 import com.sun.media.jfxmedia.events.NewFrameEvent;
 
 import Factory.AbstractShipFactory;
@@ -14,17 +16,19 @@ public class Bataille {
 	private Grille grilleAdverse;
 	private boolean tour;
 	private int nbBateaux;
+	VueJoueur vJ;
+	VueAdverse vA;
 	public static final String[] epoque = {"Moyen-Age","XXe siecle"}; 
 	
 	public Bataille(AbstractShipFactory epoque){
-		this.grilleJoueur = new Grille(epoque);
-		this.grilleAdverse = new Grille(epoque);
-		VueJoueur vJ = new VueJoueur(this);
-		VueAdverse vA = new VueAdverse(this);
-		this.grilleJoueur.addObserver(vJ);
-		this.grilleJoueur.addObserver(vA);
-		this.grilleAdverse.addObserver(vJ);
-		this.grilleAdverse.addObserver(vA);
+		this.grilleJoueur = new Grille(epoque, "Grille_Joueur");
+		this.grilleAdverse = new Grille(epoque, "Grille_Adverse");
+		this.vJ = new VueJoueur(this);
+		this.vA = new VueAdverse(this);
+		this.grilleJoueur.addObserver(this.vJ);
+		this.grilleJoueur.addObserver(this.vA);
+		this.grilleAdverse.addObserver(this.vJ);
+		this.grilleAdverse.addObserver(this.vA);
 		this.tour = true;
 		this.nbBateaux = 0;
 	}
@@ -127,5 +131,22 @@ public class Bataille {
 	public int getNbBateaux(){
 		return nbBateaux;
 	}
+	
+	public void setNbBateaux(int nbBateaux) {
+		this.nbBateaux = nbBateaux;
+	}
+	
+	public void closeFrame() {
+		this.vJ.getFrame().dispose();
+		this.vA.getFrame().dispose();
+	}
+
+	@Override
+	public String toString() {
+		return "Bataille [grilleJoueur=" + grilleJoueur + ", grilleAdverse=" + grilleAdverse + ", tour=" + tour
+				+ ", nbBateaux=" + nbBateaux + ", vJ=" + vJ + ", vA=" + vA + "]";
+	}
+
+	
 	
 }

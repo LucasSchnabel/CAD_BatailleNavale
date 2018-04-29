@@ -12,20 +12,15 @@ public class ControllerJoueur implements ActionListener{
 
 	private Bataille model;
 	
+	public void setModel(Bataille model) {
+		this.model = model;
+	}
+
 	private List<Position> cases;
 	
 	private boolean placerBateau;
 	
-	private static ControllerJoueur instance = null;
-	
-	public static ControllerJoueur getInstance(Bataille b){
-		if(instance == null){
-			instance = new ControllerJoueur(b);
-		}
-		return instance;
-	}
-	
-	private ControllerJoueur(Bataille b){
+	public ControllerJoueur(Bataille b){
 		this.model = b;
 		this.placerBateau = false;
 		this.cases = new ArrayList<Position>();
@@ -45,7 +40,7 @@ public class ControllerJoueur implements ActionListener{
 		}
 		if(cases.size()==2 && placerBateau){
 			if(!model.constructionBateauJoueur(cases.get(0), cases.get(1))){
-				System.out.println("Les positions que vous avez donner ne peuvent pas créer de bateau");
+				System.out.println("Les positions que vous avez donné ne peuvent pas créer de bateau");
 				cases.removeAll(cases);
 			}else{
 				model.constructionBateauAdverse();

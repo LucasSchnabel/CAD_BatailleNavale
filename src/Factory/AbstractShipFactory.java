@@ -10,6 +10,12 @@ import Model.Position;
 public abstract class AbstractShipFactory {
 	
 	protected Color couleur;
+	
+	protected String name;
+	
+	public AbstractShipFactory() {
+		this.name = "Abstract";
+	}
 
 	public abstract AbstractTwoCaseShip createTwoCaseShip();
 	
@@ -25,5 +31,9 @@ public abstract class AbstractShipFactory {
 
 	public Color getColor() {
 		return couleur;
+	}
+	
+	public String getName() {
+		return name;
 	}
 }

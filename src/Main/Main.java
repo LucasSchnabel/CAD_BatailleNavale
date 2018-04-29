@@ -8,6 +8,8 @@ import Factory.XXShipFactory;
 import Model.AbstractShip;
 import Model.Bataille;
 import Model.Position;
+import Vue.VueAdverse;
+import Vue.VueJoueur;
 
 public class Main {
 

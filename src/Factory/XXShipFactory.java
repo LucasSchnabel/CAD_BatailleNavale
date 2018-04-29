@@ -11,8 +11,10 @@ import Model.Destroyeur;
 import Model.Position;
 
 public class XXShipFactory extends AbstractShipFactory{
+	
 
 	public XXShipFactory(){
+		this.name = "XXe siecle";
 		this.couleur = Color.BLACK;
 	}
 	
@@ -38,6 +40,10 @@ public class XXShipFactory extends AbstractShipFactory{
 
 	public AbstractFourCaseShip createFourCaseShip(Position a, Position b) {
 		return new Cuirasse(a, b);
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 }

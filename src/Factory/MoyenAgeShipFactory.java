@@ -12,7 +12,9 @@ import Model.Position;
 
 public class MoyenAgeShipFactory extends AbstractShipFactory{
 
+	
 	public MoyenAgeShipFactory(){
+		this.name = "Moyen-Age";
 		this.couleur = Color.GREEN;
 	}
 	
@@ -39,5 +41,8 @@ public class MoyenAgeShipFactory extends AbstractShipFactory{
 	public AbstractFourCaseShip createFourCaseShip(Position a, Position b) {
 		return new Galere(a, b);
 	}
-
+	
+	public String getName() {
+		return name;
+	}
 }

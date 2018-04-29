@@ -16,17 +16,20 @@ public class Grille extends Observable {
 
 	private AbstractShipFactory epoque;
 	
+	private String name;
+	
 	public final static int HAUTEUR = 9;
 	
 	public final static int LARGEUR = 9;
 
 	public final static int NB_MAX_BATEAUX = 5;
 	
-	public Grille(AbstractShipFactory factory) {
+	public Grille(AbstractShipFactory factory, String n) {
 		this.bateaux = new ArrayList<AbstractShip>();
 		this.listeTirs = new ArrayList<Position>();
 		this.listeResultatTir = new ArrayList<Boolean>();
 		this.epoque = factory;
+		this.name = n;
 	}
 
 	/**
@@ -176,5 +179,10 @@ public class Grille extends Observable {
 	public Position getPositionTir(int i){
 		return this.listeTirs.get(i);
 	}
+	
+	public String getName() {
+		return name;
+	}
+
 	
 }

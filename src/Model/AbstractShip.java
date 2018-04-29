@@ -34,6 +34,11 @@ public abstract class AbstractShip {
 	private int taille;
 	
 	/**
+	 * type du bateau
+	 */
+	protected String type;
+	
+	/**
 	 * constructeur par defaut de tous les bateaux
 	 * @param p
 	 * 		nombre de point de vie
@@ -48,6 +53,7 @@ public abstract class AbstractShip {
 		this.proue = a;
 		this.poupe = b;
 		this.nbMunitions = Grille.HAUTEUR*Grille.LARGEUR;
+		this.type = "Abstract";
 	}
 	
 	/**
@@ -215,9 +221,13 @@ public abstract class AbstractShip {
 
 	@Override
 	public String toString() {
-		return " [pv=" + pv + ", coule=" + coule + ", proue=" + proue.getX()+","+proue.getY() + ", poupe=" + poupe.getX()+","+poupe.getY()
-				+ ", nbMunitions=" + nbMunitions + "]";
+		return "AbstractShip [pv=" + pv + ", coule=" + coule + ", proue=" + proue + ", poupe=" + poupe
+				+ ", nbMunitions=" + nbMunitions + ", taille=" + taille + ", type=" + type + "]";
 	}
 	
+	public String getType() {
+		return type;
+	}
+
 	
 }
