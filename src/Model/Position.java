@@ -16,6 +16,10 @@ public class Position {
 		this.x = a.getX();
 		this.y = a.getY();
 	}
+	
+	public boolean equals(Position p) {
+		return (this.x == p.x && this.y == p.y);
+	}
 
 	public int getX() {
 		return x;
@@ -40,8 +44,8 @@ public class Position {
 	public static Position random() {
 		Position res = new Position(0,0);
 		Random r = new Random();
-		int x = r.nextInt(Grille.HAUTEUR);
-		int y = r.nextInt(Grille.LARGEUR);
+		int x = r.nextInt(Grille.LARGEUR);
+		int y = r.nextInt(Grille.HAUTEUR);
 		res = new Position(x,y);
 		return res;
 	}
@@ -52,7 +56,7 @@ public class Position {
 		Random r = new Random();
 		int taille = r.nextInt(3)+1;
 		int cote = 0;
-		while((x<0 || x>=Grille.HAUTEUR) || (y<0 || y>=Grille.LARGEUR)){
+		while((x<0 || x>=Grille.LARGEUR) || (y<0 || y>=Grille.HAUTEUR)){
 			cote = r.nextInt(4);
 			switch(cote){
 			case 0:

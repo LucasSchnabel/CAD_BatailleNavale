@@ -98,7 +98,7 @@ public abstract class AbstractShip {
 	
 	public boolean toucherParUnTir(Position p){
 		if(this.toucher(p)){
-			pv--;
+			if(pv > 0)	pv--;
 			if(pv==0){
 				coule = true;
 				System.out.println("Bateau coule :"+this);

@@ -28,7 +28,7 @@ public class ControllerAdverse implements ActionListener {
 		} else {
 
 			String[] pos = action.split(",");
-			Position p = new Position(Integer.parseInt(pos[0]), Integer.parseInt(pos[1]));
+			Position p = new Position(Integer.parseInt(pos[1]), Integer.parseInt(pos[0]));
 			this.tir = p;
 			if (tir != null) {
 				if (model.tirJoueur(tir)) {

@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileFilter;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -57,12 +57,12 @@ public abstract class AbstractVue implements Observer {
 
 		// remplit la grille de bouton
 		grille = (JPanel) frame.getContentPane();
-		grille.setLayout(new GridLayout(Grille.HAUTEUR, Grille.LARGEUR));
+		grille.setLayout(new GridLayout(Grille.LARGEUR, Grille.HAUTEUR));
 		cases = new JButton[Grille.HAUTEUR * Grille.LARGEUR];
-		for (int i = 0; i < Grille.HAUTEUR; i++) {
-			for (int j = 0; j < Grille.LARGEUR; j++) {
-				JButton button = new JButton(i + "," + j);
-				cases[i * Grille.LARGEUR + j] = button;
+		for (int y = 0; y < Grille.HAUTEUR; y++) {
+			for (int x = 0; x < Grille.LARGEUR; x++) {
+				JButton button = new JButton(y + "," + x);
+				cases[x + y * Grille.LARGEUR ] = button;
 				grille.add(button);
 				if (joueur) {
 					button.addActionListener(cj);
@@ -95,7 +95,7 @@ public abstract class AbstractVue implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				model.closeFrame();
-				JFileChooser fileopen = new JFileChooser();
+				JFileChooser fileopen = new JFileChooser(new File(System.getProperty("user.dir")));
 			    FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
 			    fileopen.addChoosableFileFilter(filter);
 
@@ -113,7 +113,11 @@ public abstract class AbstractVue implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				if(model.getNbBateaux() < Grille.NB_MAX_BATEAUX) {
 					System.out.println("Vous devez placer tous vos bateaux avant de sauvegarder");
-				}else DAOBattleship.getInstance().generateCSV(model);
+				}else{
+					DAOBattleship.getInstance().generateCSV(model);
+					JOptionPane.showMessageDialog(frame,
+						    "Sauvegarde effectuée");
+				}
 			}
 		});
 		nouvellePartie.addActionListener(new ActionListener() {

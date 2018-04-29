@@ -27,7 +27,7 @@ public class VueAdverse extends AbstractVue{
 			}else{
 				tir = Color.cyan;
 			}
-			this.cases[p.getY() + p.getX()*Grille.LARGEUR].setBackground(tir);
+			this.cases[p.getX() + p.getY()*Grille.LARGEUR].setBackground(tir);
 		}
 		//(optionnel)affiche les bateaux de l'adversaire quand la partie est fini
 		
