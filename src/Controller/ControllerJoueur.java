@@ -32,7 +32,7 @@ public class ControllerJoueur implements ActionListener{
 			placerBateau = true;
 		}else{
 			String[] pos = action.split(",");
-			Position p = new Position(Integer.parseInt(pos[0]),Integer.parseInt(pos[1]));
+			Position p = new Position(Integer.parseInt(pos[1]),Integer.parseInt(pos[0]));
 			cases.add(p);
 			if(cases.size()>2){
 				cases.remove(0);

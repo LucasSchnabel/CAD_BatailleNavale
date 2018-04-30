@@ -36,7 +36,7 @@ public abstract class AbstractVue implements Observer {
 	private JMenuItem nouvellePartie = new JMenuItem("Nouvelle Partie");
 	private JMenuItem chargerPartie = new JMenuItem("Charger Partie");
 	private JMenuItem sauvegarderPartie = new JMenuItem("Sauvegarder partie");
-	//private JMenuItem tirer = new JMenuItem("Tirer");
+	// private JMenuItem tirer = new JMenuItem("Tirer");
 	private JMenuItem placerBateau = new JMenuItem("Placer Bateau");
 	private JMenu choixEpoque = new JMenu("Epoques");
 	private JMenuItem moyenAge = new JMenuItem("Moyen Age");
@@ -62,7 +62,7 @@ public abstract class AbstractVue implements Observer {
 		for (int y = 0; y < Grille.HAUTEUR; y++) {
 			for (int x = 0; x < Grille.LARGEUR; x++) {
 				JButton button = new JButton(y + "," + x);
-				cases[x + y * Grille.LARGEUR ] = button;
+				cases[x + y * Grille.LARGEUR] = button;
 				grille.add(button);
 				if (joueur) {
 					button.addActionListener(cj);
@@ -72,7 +72,7 @@ public abstract class AbstractVue implements Observer {
 			}
 		}
 		// ajout des controlleur
-		//tirer.addActionListener(ca);
+		// tirer.addActionListener(ca);
 		placerBateau.addActionListener(cj);
 		// changement d'époque
 		moyenAge.addActionListener(new ActionListener() {
@@ -94,29 +94,28 @@ public abstract class AbstractVue implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				model.closeFrame();
 				JFileChooser fileopen = new JFileChooser(new File(System.getProperty("user.dir")));
-			    FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
-			    fileopen.addChoosableFileFilter(filter);
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV", "csv");
+				fileopen.addChoosableFileFilter(filter);
 
-			    int ret = fileopen.showDialog(null, "Open file");
+				int ret = fileopen.showDialog(null, "Open file");
 
-			    if (ret == JFileChooser.APPROVE_OPTION) {
-			      File file = fileopen.getSelectedFile();
-			      Bataille load = DAOBattleship.getInstance().readCSV(file.getPath());
-			    }
+				if (ret == JFileChooser.APPROVE_OPTION) {
+					model.closeFrame();
+					File file = fileopen.getSelectedFile();
+					Bataille load = DAOBattleship.getInstance().readCSV(file.getPath());
+				}
 			}
 		});
 		sauvegarderPartie.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(model.getNbBateaux() < Grille.NB_MAX_BATEAUX) {
+				if (model.getNbBateaux() < Grille.NB_MAX_BATEAUX) {
 					System.out.println("Vous devez placer tous vos bateaux avant de sauvegarder");
-				}else{
+				} else {
 					DAOBattleship.getInstance().generateCSV(model);
-					JOptionPane.showMessageDialog(frame,
-						    "Sauvegarde effectuée");
+					JOptionPane.showMessageDialog(frame, "Sauvegarde effectuée");
 				}
 			}
 		});
@@ -131,7 +130,7 @@ public abstract class AbstractVue implements Observer {
 		});
 
 		// remplit le menu deroulant
-	//	action.add(tirer);
+		// action.add(tirer);
 		action.add(placerBateau);
 		choixEpoque.add(moyenAge);
 		choixEpoque.add(xxSiecle);

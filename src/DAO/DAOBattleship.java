@@ -49,7 +49,6 @@ public class DAOBattleship {
 		try {
 			String outputFileName = this.dateFormat.format(this.date);
 			outputFileName = outputFileName.replaceAll("/", "_") + ".csv";
-			System.out.println(outputFileName);
 			FileWriter writer = new FileWriter(outputFileName);
 
 			String csvSeparator = ",";
@@ -142,7 +141,6 @@ public class DAOBattleship {
 				i++;
 				// Creation de la factory en fonction de l'epoque
 				if (i == 1) {
-					System.out.println(line);
 					switch (line) {
 					case "Moyen-Age":
 						bataille = new Bataille(new MoyenAgeShipFactory());

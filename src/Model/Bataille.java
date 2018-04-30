@@ -52,9 +52,10 @@ public class Bataille {
 	public boolean tirJoueur(Position p){
 		boolean res = false;
 		if(tour && nbBateaux==Grille.NB_MAX_BATEAUX && !partieFini()){
+			System.out.println("Tir sur la position :" + p);
 			res = this.grilleAdverse.touche(p);
 			tour = !tour;
-		}
+		} else 	System.out.println("Tir non effectué");
 		return res;
 	}
 	
@@ -63,8 +64,8 @@ public class Bataille {
 		if(!tour && nbBateaux==Grille.NB_MAX_BATEAUX && !partieFini()){
 			while(!res){
 				Position p = Position.random();
-				res = this.grilleJoueur.touche(p);
 				System.out.println("Tir adverse sur la position :"+p);
+				res = this.grilleJoueur.touche(p);
 			}
 			tour = !tour;
 		}
@@ -79,7 +80,7 @@ public class Bataille {
 			}
 		}
 		if(res){
-			System.out.println("L'adversaire a detruit tout vos bateaux, vous avez perdu");
+			System.out.println("L'adversaire a detruit tous vos bateaux, vous avez perdu");
 		}else{
 			res = true;
 			for(AbstractShip bateau:this.grilleAdverse.getBateaux()){
@@ -88,7 +89,7 @@ public class Bataille {
 				}
 			}
 			if(res){
-				System.out.println("Vous avez détruit tout les bateaux de l'adverssaire, bravo vous avez gagné");
+				System.out.println("Vous avez détruit tous les bateaux de l'adversaire, bravo vous avez gagné");
 			}
 		}
 		return res;

@@ -73,8 +73,6 @@ public class Grille extends Observable {
 	public boolean constructionBateau(Position a,Position b){
 		boolean res = false;
 		int taille = 0;
-		System.out.println(a);
-		System.out.println(b);
 		if(this.bateaux.size()<NB_MAX_BATEAUX){
 			if(a.getX()==b.getX()){//si le bateau est verticale
 				taille = Math.abs(a.getY()-b.getY())+1;
@@ -110,7 +108,6 @@ public class Grille extends Observable {
 					if(bateau!=null){
 						this.addBateau(bateau);
 						res = true;
-						System.out.println(bateau);
 					}
 				}
 			}

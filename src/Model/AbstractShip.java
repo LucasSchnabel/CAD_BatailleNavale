@@ -97,7 +97,7 @@ public abstract class AbstractShip {
 	}
 	
 	public boolean toucherParUnTir(Position p){
-		if(this.toucher(p) && !coule){
+		if(this.toucher(p)){
 			if(pv > 0)	pv--;
 			if(pv==0){
 				coule = true;
@@ -109,12 +109,7 @@ public abstract class AbstractShip {
 	}
 	
 	/**
-	 * renvoie si le bateau positionner en a,b est en colision avec le bateau en c,d
-	 * @param a
-	 * @param b
-	 * @param c
-	 * @param d
-	 * @return
+	 * renvoie true si le bateau positionner en a,b est en colision avec le bateau en c,d
 	 * 		si il y a colision
 	 */
 	public boolean colision(Position a,Position b){

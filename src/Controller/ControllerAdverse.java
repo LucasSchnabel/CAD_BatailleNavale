@@ -26,18 +26,14 @@ public class ControllerAdverse implements ActionListener {
 		if (model.getNbBateaux() < Grille.NB_MAX_BATEAUX) {
 			System.out.println("Vous devez placer tous vos bateaux avant de tirer");
 		} else {
-
 			String[] pos = action.split(",");
 			Position p = new Position(Integer.parseInt(pos[1]), Integer.parseInt(pos[0]));
 			this.tir = p;
 			if (tir != null) {
 				if (model.tirJoueur(tir)) {
-					System.out.println("Tir sur la position :" + tir);
 					tirer = false;
 					tir = null;
 					model.tirAdverse();
-				} else {
-					System.out.println("Tir non effectué");
 				}
 			}
 		}
